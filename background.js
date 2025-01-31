@@ -144,7 +144,7 @@ chrome.alarms.onAlarm.addListener(async function(alarm) {
 
   chrome.notifications.create({
     type: 'basic',
-    iconUrl: 'icons/icon128.png',
+    iconUrl: 'icons/icon48.ico',
     title: title,
     message: message,
     priority: 2
