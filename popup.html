@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>HealthBuddy</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <img src="icons/icon48.ico" alt="HealthBuddy" class="logo" data-tooltip="HealthBuddy - Your Wellness Companion">
+      <h1>HealthBuddy</h1>
+    </div>
+    
+    <div class="stats">
+      <div class="stat-item" data-tooltip="Number of health breaks taken today">
+        <span class="stat-label">Today's Breaks</span>
+        <span id="todayBreaks" class="stat-value">0</span>
+      </div>
+      <div class="stat-item" data-tooltip="Consecutive days of maintaining healthy breaks">
+        <span class="stat-label">Streak</span>
+        <span id="currentStreak" class="stat-value">0</span>
+      </div>
+    </div>
+
+    <div class="settings">
+      <h2>Reminder Settings</h2>
+
+      <div class="setting-item">
+        <label data-tooltip="Get reminded to stand up and move around">Stand Up Reminder (minutes)</label>
+        <input type="number" id="standupInterval" min="15" value="30" 
+               data-tooltip="Set how often you want to be reminded to stand up (minimum 15 minutes)">
+        <div class="toggle-container">
+          <label class="switch" data-tooltip="Turn stand-up reminders on/off">
+            <input type="checkbox" id="standupEnabled" checked>
+            <span class="slider round"></span>
+          </label>
+          <span>Enabled</span>
+        </div>
+      </div>
+
+      <div class="setting-item">
+        <label data-tooltip="Get reminded to stay hydrated">Water Break Reminder (minutes)</label>
+        <input type="number" id="waterInterval" min="15" value="45"
+               data-tooltip="Set how often you want to be reminded to drink water (minimum 15 minutes)">
+        <div class="toggle-container">
+          <label class="switch" data-tooltip="Turn water break reminders on/off">
+            <input type="checkbox" id="waterEnabled" checked>
+            <span class="slider round"></span>
+          </label>
+          <span>Enabled</span>
+        </div>
+      </div>
+
+      <div class="setting-item">
+        <label data-tooltip="Get reminded to rest your eyes using the 20-20-20 rule">Eye Break Reminder (minutes)</label>
+        <input type="number" id="eyeInterval" min="15" value="20"
+               data-tooltip="Set how often you want to be reminded to rest your eyes (minimum 15 minutes)">
+        <div class="toggle-container">
+          <label class="switch" data-tooltip="Turn eye break reminders on/off">
+            <input type="checkbox" id="eyeEnabled" checked>
+            <span class="slider round"></span>
+          </label>
+          <span>Enabled</span>
+        </div>
+      </div>
+
+      <div class="setting-item">
+        <label data-tooltip="Set a time period when notifications will be paused">Quiet Hours</label>
+        <div class="time-range">
+          <input type="time" id="quietStart" value="22:00" 
+                 data-tooltip="Start time for quiet hours (when notifications will be paused)">
+          <span>to</span>
+          <input type="time" id="quietEnd" value="09:00"
+                 data-tooltip="End time for quiet hours (when notifications will resume)">
+        </div>
+      </div>
+
+      <button id="saveSettings">Save Settings</button>
+    </div>
+
+    <div class="setting-item">
+      <label data-tooltip="Choose between 12-hour (AM/PM) or 24-hour time format">Time Format</label>
+      <div class="toggle-container">
+        <label class="switch" data-tooltip="Toggle between 12/24 hour format">
+          <input type="checkbox" id="use24Hour" checked>
+          <span class="slider round"></span>
+        </label>
+        <span>24-hour format</span>
+      </div>
+    </div>
+
+    <div class="status" data-tooltip="Shows when your next breaks are scheduled">
+      <p>Next Stand Up: <span id="nextStandup">-</span></p>
+      <p>Next Water Break: <span id="nextWater">-</span></p>
+      <p>Next Eye Break: <span id="nextEye">-</span></p>
+    </div>
+
+    <div class="actions">
+      <button id="snoozeAll" class="secondary">Snooze All (30m)</button>
+      <button id="resetStats" class="secondary">Reset Stats</button>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html> 

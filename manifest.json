@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "HealthBuddy",
+  "version": "1.0",
+  "description": "Your personal health companion that reminds you to take breaks, stay hydrated, and protect your eyes",
+  "permissions": [
+    "notifications",
+    "storage",
+    "alarms"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.ico",
+      "48": "icons/icon48.ico",
+      "128": "icons/icon128.ico"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "16": "icons/icon16.ico",
+    "48": "icons/icon48.ico",
+    "128": "icons/icon128.ico"
+  }
+} 

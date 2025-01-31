@@ -1,0 +1,10 @@
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="64" cy="64" r="60" fill="#2196F3"/>
+  
+  <!-- Heart shape -->
+  <path d="M64 40 C64 40 55 28 42 28 C29 28 20 38 20 48 C20 63 35 73 64 95 C93 73 108 63 108 48 C108 38 99 28 86 28 C73 28 64 40 64 40Z" fill="white"/>
+  
+  <!-- Water drop -->
+  <path d="M64 75 C64 75 58 65 58 60 C58 56 61 53 64 53 C67 53 70 56 70 60 C70 65 64 75 64 75Z" fill="#2196F3"/>
+</svg> 
