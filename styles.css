@@ -7,7 +7,7 @@ body {
 .container {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 20px;
   overflow: visible;
 }
 
@@ -37,10 +37,10 @@ h2 {
 }
 
 .setting-item {
-  margin: 10px 0;
+  margin: 15px 0;
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 8px;
 }
 
 input {
@@ -248,28 +248,4 @@ button.secondary:hover {
 .setting-item .toggle-container span {
   font-size: 14px;
   color: #666;
-}
-
-/* Style for time inputs with 12-hour display */
-input[type="time"][data-display-time] {
-  position: relative;
-  color: transparent;
-}
-
-input[type="time"][data-display-time]::before {
-  content: attr(data-display-time);
-  position: absolute;
-  left: 5px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #000;
-  pointer-events: none;
-}
-
-input[type="time"][data-display-time]:focus {
-  color: #000;
-}
-
-input[type="time"][data-display-time]:focus::before {
-  display: none;
 } 

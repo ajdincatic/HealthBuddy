@@ -134,23 +134,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Function to update all time displays
   function updateTimeDisplays(use24Hour) {
-    // Update quiet hours display
-    const quietStart = document.getElementById('quietStart');
-    const quietEnd = document.getElementById('quietEnd');
-    
-    if (!use24Hour) {
-      // Store original 24h values
-      const startTime24h = quietStart.value;
-      const endTime24h = quietEnd.value;
-      
-      quietStart.setAttribute('data-display-time', formatTime(startTime24h, false));
-      quietEnd.setAttribute('data-display-time', formatTime(endTime24h, false));
-    } else {
-      quietStart.removeAttribute('data-display-time');
-      quietEnd.removeAttribute('data-display-time');
-    }
-    
-    // Update next reminder times
+    // Remove the quiet hours display update code and only update next reminders
     updateNextReminders();
   }
 
@@ -224,38 +208,4 @@ document.addEventListener('DOMContentLoaded', function() {
     
     return `${hours.toString().padStart(2, '0')}:${minutes}`;
   }
-
-  // Add input handlers for time inputs
-  const timeInputs = document.querySelectorAll('input[type="time"]');
-  timeInputs.forEach(input => {
-    input.addEventListener('change', function() {
-      const use24Hour = document.getElementById('use24Hour').checked;
-      if (!use24Hour) {
-        // When in 12-hour mode, convert the input value to 24-hour format
-        const displayTime = formatTime(this.value, false);
-        this.setAttribute('data-display-time', displayTime);
-        
-        // Keep the actual value in 24-hour format
-        const time24 = convertTo24Hour(displayTime);
-        this.value = time24;
-      }
-    });
-
-    input.addEventListener('focus', function() {
-      // Temporarily remove the display time while editing
-      const displayTime = this.getAttribute('data-display-time');
-      if (displayTime) {
-        this.removeAttribute('data-display-time');
-      }
-    });
-
-    input.addEventListener('blur', function() {
-      const use24Hour = document.getElementById('use24Hour').checked;
-      if (!use24Hour) {
-        // Restore the 12-hour display format
-        const displayTime = formatTime(this.value, false);
-        this.setAttribute('data-display-time', displayTime);
-      }
-    });
-  });
 }); 

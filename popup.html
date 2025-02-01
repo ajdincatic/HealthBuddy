@@ -78,21 +78,19 @@
       <button id="saveSettings">Save Settings</button>
     </div>
 
-    <div class="setting-item">
-      <label data-tooltip="Choose between 12-hour (AM/PM) or 24-hour time format">Time Format</label>
-      <div class="toggle-container">
-        <label class="switch" data-tooltip="Toggle between 12/24 hour format">
-          <input type="checkbox" id="use24Hour" checked>
-          <span class="slider round"></span>
-        </label>
-        <span>24-hour format</span>
-      </div>
-    </div>
-
     <div class="status" data-tooltip="Shows when your next breaks are scheduled">
       <p>Next Stand Up: <span id="nextStandup">-</span></p>
       <p>Next Water Break: <span id="nextWater">-</span></p>
       <p>Next Eye Break: <span id="nextEye">-</span></p>
+      <div class="setting-item">
+        <div class="toggle-container">
+          <label class="switch">
+            <input type="checkbox" id="use24Hour" checked>
+            <span class="slider round"></span>
+          </label>
+          <span>24-hour format</span>
+        </div>
+      </div>
     </div>
 
     <div class="actions">
