@@ -7,6 +7,19 @@ chrome.runtime.onInstalled.addListener(function() {
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
   if (request.action === 'updateAlarms') {
     setupAlarms();
+  } else if (request.action === 'snoozeAll') {
+    chrome.alarms.getAll(function(alarms) {
+      alarms.forEach(alarm => {
+        const newTime = Date.now() + 30 * 60 * 1000; // 30 minutes
+        chrome.alarms.create(alarm.name, {
+          when: newTime,
+          periodInMinutes: parseInt(alarm.periodInMinutes)
+        });
+      });
+    });
+  } else if (request.action === 'cancelSnooze') {
+    // Reset alarms to their original intervals
+    setupAlarms();
   }
 });
 
@@ -19,13 +32,45 @@ function setupAlarms() {
       eyeInterval: 20
     },
     function(settings) {
-      // Clear existing alarms
-      chrome.alarms.clearAll();
+      // Get existing alarms first
+      chrome.alarms.getAll(function(existingAlarms) {
+        const currentTimes = {};
+        const changedIntervals = {};
+        
+        // Compare with previous intervals to detect changes
+        existingAlarms.forEach(alarm => {
+          currentTimes[alarm.name] = {
+            scheduledTime: alarm.scheduledTime,
+            periodInMinutes: alarm.periodInMinutes
+          };
+        });
 
-      // Create new alarms
-      chrome.alarms.create('Standup', { periodInMinutes: settings.standupInterval });
-      chrome.alarms.create('Water', { periodInMinutes: settings.waterInterval });
-      chrome.alarms.create('Eye', { periodInMinutes: settings.eyeInterval });
+        // Clear existing alarms
+        chrome.alarms.clearAll(function() {
+          const now = Date.now();
+          const alarmConfigs = {
+            'Standup': settings.standupInterval,
+            'Water': settings.waterInterval,
+            'Eye': settings.eyeInterval
+          };
+
+          Object.entries(alarmConfigs).forEach(([name, interval]) => {
+            const periodInMinutes = parseInt(interval);
+            const existing = currentTimes[name];
+            
+            if (existing && existing.periodInMinutes === periodInMinutes) {
+              // Interval unchanged, preserve schedule
+              chrome.alarms.create(name, {
+                when: existing.scheduledTime,
+                periodInMinutes: periodInMinutes
+              });
+            } else {
+              // Interval changed or new alarm, start fresh
+              chrome.alarms.create(name, { periodInMinutes });
+            }
+          });
+        });
+      });
     }
   );
 }

@@ -27,7 +27,7 @@
 
       <div class="setting-item">
         <label data-tooltip="Get reminded to stand up and move around">Stand Up Reminder (minutes)</label>
-        <input type="number" id="standupInterval" min="15" value="30" 
+        <input type="number" id="standupInterval" min="1" value="30" 
                data-tooltip="Set how often you want to be reminded to stand up (minimum 15 minutes)">
         <div class="toggle-container">
           <label class="switch" data-tooltip="Turn stand-up reminders on/off">
@@ -40,7 +40,7 @@
 
       <div class="setting-item">
         <label data-tooltip="Get reminded to stay hydrated">Water Break Reminder (minutes)</label>
-        <input type="number" id="waterInterval" min="15" value="45"
+        <input type="number" id="waterInterval" min="1" value="45"
                data-tooltip="Set how often you want to be reminded to drink water (minimum 15 minutes)">
         <div class="toggle-container">
           <label class="switch" data-tooltip="Turn water break reminders on/off">
@@ -53,7 +53,7 @@
 
       <div class="setting-item">
         <label data-tooltip="Get reminded to rest your eyes using the 20-20-20 rule">Eye Break Reminder (minutes)</label>
-        <input type="number" id="eyeInterval" min="15" value="20"
+        <input type="number" id="eyeInterval" min="1" value="20"
                data-tooltip="Set how often you want to be reminded to rest your eyes (minimum 15 minutes)">
         <div class="toggle-container">
           <label class="switch" data-tooltip="Turn eye break reminders on/off">
@@ -79,9 +79,27 @@
     </div>
 
     <div class="status" data-tooltip="Shows when your next breaks are scheduled">
-      <p>Next Stand Up: <span id="nextStandup">-</span></p>
-      <p>Next Water Break: <span id="nextWater">-</span></p>
-      <p>Next Eye Break: <span id="nextEye">-</span></p>
+      <div class="reminder-item">
+        <p>Next Stand Up: <span id="nextStandup">-</span></p>
+        <div class="countdown-bar">
+          <div id="standupBar" class="countdown-progress"></div>
+        </div>
+      </div>
+      
+      <div class="reminder-item">
+        <p>Next Water Break: <span id="nextWater">-</span></p>
+        <div class="countdown-bar">
+          <div id="waterBar" class="countdown-progress"></div>
+        </div>
+      </div>
+      
+      <div class="reminder-item">
+        <p>Next Eye Break: <span id="nextEye">-</span></p>
+        <div class="countdown-bar">
+          <div id="eyeBar" class="countdown-progress"></div>
+        </div>
+      </div>
+      
       <div class="setting-item">
         <div class="toggle-container">
           <label class="switch">
@@ -94,7 +112,10 @@
     </div>
 
     <div class="actions">
-      <button id="snoozeAll" class="secondary">Snooze All (30m)</button>
+      <div class="snooze-container">
+        <button id="snoozeAll" class="secondary">Snooze All (30m)</button>
+        <button id="cancelSnooze" class="secondary warning" style="display: none;">Cancel Snooze</button>
+      </div>
       <button id="resetStats" class="secondary">Reset Stats</button>
     </div>
   </div>
