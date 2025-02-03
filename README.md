@@ -2,6 +2,8 @@
 
 ![HealthBuddy Logo](icons/icon128.ico)
 
+Download: https://chromewebstore.google.com/detail/healthbuddy/kjnmakehialniegpjekmppllemgkbjoh
+
 HealthBuddy is a Chrome extension designed to help you maintain healthy habits while working at your computer. It provides timely reminders for standing up, staying hydrated, and protecting your eyes using the 20-20-20 rule.
 
 ## Why HealthBuddy? 🎯
